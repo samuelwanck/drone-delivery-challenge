@@ -24,31 +24,15 @@ public class Order {
         return orderId;
     }
 
-    public void setOrderId(String orderId) {
-        this.orderId = orderId;
-    }
-
     public LocalTime getOrderTime() {
         return orderTime;
-    }
-
-    public void setOrderTime(LocalTime orderTime) {
-        this.orderTime = orderTime;
     }
 
     public long getPriorityNumber() {
         return priorityNumber;
     }
 
-    public void setPriorityNumber(long priorityNumber) {
-        this.priorityNumber = priorityNumber;
-    }
-
     public long getDeliveryTimeMinutes() {
         return deliveryTimeMinutes;
-    }
-
-    public void setDeliveryTimeMinutes(long deliveryTimeMinutes) {
-        this.deliveryTimeMinutes = deliveryTimeMinutes;
     }
 }

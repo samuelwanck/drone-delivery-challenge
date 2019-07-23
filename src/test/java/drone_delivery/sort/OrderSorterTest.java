@@ -39,11 +39,4 @@ public class OrderSorterTest {
         // Then
         assertThat(illegalArgumentException.getMessage(), is("The provided input file contains invalid customer coordinates.  The format is:\n{N|S}{grid number}{E|W}{grid number}"));
     }
-
-    @Test
-    void test() {
-        List<Integer> list = new ArrayList<>();
-        list.add(0);
-        list.add(1, 1);
-    }
 }

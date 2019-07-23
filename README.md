@@ -2,12 +2,20 @@ Drone Delivery Scheduler
 
 Author: Samuel Wanck
 
+### Solution Execution
+To execute the the solution you can perform the following from a terminal:
+
+1) execute "mvn clean install" in the base project folder.  This will compile the java code,
+execute the units, and package the compiled code into an executable jar
+2) execute "java -cp drone-delivery-challenge-1.0-SNAPSHOT.jar drone_delivery.DroneDelivery {path/to/input/file}"
+
+If you wish to only run the tests:
+ - mvn clean test
+
+
 ### Assumptions:
 - Time to delivery begins at 6:00 if order time is before 6:00
 - The drone cannot move diagonally across a grid block.  It can only north, south, east, or west
-- Deliveries that are not able to be made (and have the drone returned) by 22:00 will be 
-pushed to the head of the queue for the following day.  I accommodated this by outputing a datetime
-instead of just a time.
 - All timestamps are for the same time zone
 - The town does not span across different time zones
 - Orders are independent, i.e. the drone does not carry multiple orders before returning 
@@ -28,4 +36,10 @@ order timestamp.  The drone must pick up the next order that has been made, even
 shorter delivery time is soon to be made.
 - Its okay to fail fast if the input file contains an invalid line (e.g. missing order timestamp) and
 not continue.  If we should continue, then the invalid line should be noted for the client user and skipped.
-- The hour value for the provided order timestamps are the clock value (1-24)
+This might have to change depending on how the scheduler would be used.
+- The hour value for the provided order timestamps are the clock value (0-23)
+- The input file will not contain deliveries that cannot be completed before 10 PM.  This case can be 
+accommodated for by scheduling the remaining deliveries for the next day or simply stating that these deliveries
+could not be made in the output.  For the sake of timeliness, I did not cover this case.
+
+

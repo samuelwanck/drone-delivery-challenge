@@ -53,16 +53,28 @@ public class DroneDeliveryTest {
     }
 
     @Test
+    void testOutputFilePathNotFound() {
+        // Given
+        String[] args = new String[]{"bad_path"};
+
+        // When
+        IllegalArgumentException illegalArgumentException = assertThrows(IllegalArgumentException.class, () -> DroneDelivery.main(args));
+
+        // Then
+        assertThat(illegalArgumentException.getMessage(), is("The provided input file could not be found."));
+    }
+
+    @Test
     void testSchedule() throws IOException {
         // Given
-        String inputFilePath = "C:/Users/Sam/Projects/drone-delivery-challenge/src/test/resources/orders.txt";
-        String expectedOutput = new String(Files.readAllBytes(Paths.get("C:\\Users\\Sam\\Projects\\drone-delivery-challenge\\src\\test\\resources\\expected_output.txt")));
+        String inputFilePath = "src/test/resources/orders.txt";
+        String expectedOutput = new String(Files.readAllBytes(Paths.get("src/test/resources/expected_output.txt")));
 
         // When
         DroneDelivery.main(new String[]{inputFilePath});
 
         // Then
-        String actualOutput = new String(Files.readAllBytes(Paths.get("C:\\Users\\Sam\\Projects\\drone-delivery-challenge\\target\\delivery-schedule.txt")));
-        assertThat(actualOutput.equals(expectedOutput), is(true));
+        String actualOutput = new String(Files.readAllBytes(Paths.get("delivery_schedule.txt")));
+        assertThat(actualOutput.equals(expectedOutput.replaceAll("\\r", "")), is(true));
     }
 }
